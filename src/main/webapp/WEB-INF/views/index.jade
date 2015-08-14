@@ -1,0 +1,18 @@
+-import io.github.mlidal.todomvc.model.Todo
+-@ val todos : List[Todo]
+
+h1 Scalatra Todo-list
+
+form(name="newTodo" action="/new" method="post")
+    Add new todo:
+    input(type="text" name="todo")
+    button(type="submit" name="add")
+        New todo
+
+h2 Things to do
+ul
+- for (todo <- todos)
+    - if (todo.completed)
+        li <strike>#{todo.body}</strike>  <a href="/#{todo.id}/delete">[delete]</a>
+    - else
+        li #{todo.body}  <a href="/#{todo.id}/completed">[completed]</a>
